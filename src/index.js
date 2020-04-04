@@ -34,4 +34,4 @@ app.listen(port, () => {
   logger.info(`${config.appName} is listening on port: ${port}`);
 });
 
-module.exports = app;
+export default app;

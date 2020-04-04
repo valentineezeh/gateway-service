@@ -11,7 +11,7 @@ Master device that control multiple peripheral devices
 - Download or clone
 - Open terminal inside the root directory of clone folder
 - Type `npm install` to install all dependencies
-- `npm start` to run the app
+- `npm start` to run the app in production environment
 - npm run `dev` to run development environment
 - npm run `test` to run the test suits on the app
 

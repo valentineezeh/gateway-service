@@ -81,7 +81,7 @@ class GatewayController {
       if (checkStatus.indexOf(status) < 0) {
         return failure(res, {
           message: 'Status can either be "online" or "offline"'
-        });
+        }, HTTPStatus.BAD_REQUEST);
       }
 
       // find if gateway exist
@@ -195,6 +195,12 @@ class GatewayController {
       if (!_id || _id.trim().length === 0 || _id === '') {
         return failure(res, {
           message: 'Gateway ID is required'
+        }, HTTPStatus.BAD_REQUEST);
+      }
+
+      if (!deviceId || deviceId.trim().length === 0 || deviceId === '') {
+        return failure(res, {
+          message: 'Device ID is required.'
         }, HTTPStatus.BAD_REQUEST);
       }
 

@@ -11,7 +11,7 @@
     "transpile": "babel ./src --out-dir dist --copy-files",
     "server": "node dist/index.js",
     "dev": "nodemon --watch src --delay 250ms --exec babel-node src/index.js --ignore tests/",
-    "test": "npm run test"
+    "test": "cross-env NODE_ENV=test nyc --reporter=html mocha --require babel-core/register src/test/index.js --timeout 10000 --exit && nyc report"
   },
   "dependencies": {
     "amqplib": "^0.5.5",

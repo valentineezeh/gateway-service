@@ -6,8 +6,6 @@ const respond = (res, data, httpCode) => {
     code: httpCode,
     data: data.response,
     message: data.message,
-    // add pagination to the response
-    meta: data.meta,
     validationError: data.validationError
   };
   res.setHeader('Content-Type', 'application/json');
@@ -32,9 +30,6 @@ const failure = (res, response, httpCode = 503) => {
   respond(res, data, httpCode);
 };
 
-// module.exports = {
-//   success, failure
-// }
 export {
   success, failure
 };
