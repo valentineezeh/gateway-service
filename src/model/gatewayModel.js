@@ -38,6 +38,9 @@ const gatewaySchema = new mongoose.Schema(
           type: String,
           enum: ['online', 'offline'],
           default: 'offline'
+        },
+        gatewayId: {
+          type: mongoose.SchemaTypes.ObjectId, required: true, index: true
         }
       }],
       validate: [arrayLimit, 'Exceeds the limit of 10 devices']

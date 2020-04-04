@@ -50,7 +50,9 @@ class GatewayService {
      * @returns {Object} return a payload
      */
   static async allGateways() {
-    const response = await GateWayModel.find();
+    const response = await GateWayModel.find().sort({
+      updatedAt: -1
+    });
     return response;
   }
 
@@ -61,11 +63,11 @@ class GatewayService {
      * @returns {Object} return a payload
      */
   static async removeDevice(searchQuery, deviceId) {
-    const response = await GateWayModel.updateOne(
+    const response = await GateWayModel.findByIdAndUpdate(
       searchQuery,
       {
         $pull: {
-          devices: { _id: deviceId }
+          devices: { _id: deviceId._id }
         }
       },
       { new: true }

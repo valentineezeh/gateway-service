@@ -77,6 +77,13 @@ class GatewayController {
         }, HTTPStatus.BAD_REQUEST);
       }
 
+      const checkStatus = ['online', 'offline'];
+      if (checkStatus.indexOf(status) < 0) {
+        return failure(res, {
+          message: 'Status can either be "online" or "offline"'
+        });
+      }
+
       // find if gateway exist
       const findGateway = await GatewayService.getGateway({ _id });
 
@@ -95,7 +102,9 @@ class GatewayController {
       }
 
       // If every things goes on well add the device.
-      const data = await GatewayService.addDevice({ _id }, { uid, vendor, status });
+      const data = await GatewayService.addDevice({ _id }, {
+        uid, vendor, status, gatewayId: _id
+      });
 
       return success(res, {
         message: 'Device creation was a success',
@@ -119,12 +128,6 @@ class GatewayController {
     try {
       // get all gateways
       const data = await GatewayService.allGateways();
-      //  If a empty array is return throw this error
-      if (data.length === 0) {
-        return failure(res, {
-          message: 'Gateway is yet to be created.'
-        }, HTTPStatus.NOT_FOUND);
-      }
       // return success if everything goes as plan
       return success(res, {
         message: 'Successfully retrieved all gateways',
@@ -187,17 +190,19 @@ class GatewayController {
   async removeDevice(req, res) {
     try {
       const { _id } = req.params;
-      const { deviceId } = req.body;
+      const { deviceId } = req.query;
 
       if (!_id || _id.trim().length === 0 || _id === '') {
         return failure(res, {
           message: 'Gateway ID is required'
         }, HTTPStatus.BAD_REQUEST);
       }
-      await GatewayService.removeDevice({ _id }, { _id: deviceId });
+
+      const data = await GatewayService.removeDevice({ _id }, { _id: deviceId });
 
       return success(res, {
         message: 'Device removal was successful',
+        response: data
       }, HTTPStatus.OK);
     } catch (error) {
       this.logger.error('Error retrieving a single gateway', error);
