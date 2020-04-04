@@ -4,12 +4,13 @@
   "description": "Master device that control multiple peripheral devices",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "npm run prod",
+    "prod": "cross-env NODE_ENV=production npm-run-all build server",
+    "build": "npm-run-all clean transpile",
+    "clean": "rimraf ./dist",
+    "transpile": "babel ./src --out-dir dist --copy-files",
+    "server": "node dist/index.js",
     "dev": "nodemon --watch src --delay 250ms --exec babel-node src/index.js --ignore tests/",
-    "heroku-postbuild": "npm run build:prod",
-    "build:prod": "npm run prebuild && babel ./src --out-dir dist --copy-files",
-    "clean:dist": "rimraf ./dist",
-    "prebuild": "npm run clean:dist",
     "test": "npm run test"
   },
   "dependencies": {
