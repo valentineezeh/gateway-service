@@ -1,6 +1,7 @@
 /* eslint-disable no-shadow */
 import mongoose from 'mongoose';
 import bluebird from 'bluebird';
+import dotenv from 'dotenv';
 import config from './config';
 import serviceLocator from '../lib/service_location';
 import GatewayController from '../controllers/gateway';
@@ -8,6 +9,10 @@ import GatewayService from '../services/gatewayService';
 
 const winston = require('winston');
 require('winston-daily-rotate-file');
+
+dotenv.config();
+
+console.log('--->>> ', process.env.NODE_ENV)
 
 /**
  * Returns an instance of logger
@@ -32,7 +37,6 @@ serviceLocator.register('logger', () => {
   if (process.env.NODE_ENV !== 'production') {
     logger.add(new winston.transports.Console({
       format: winston.format.simple(),
-
     }));
   }
   return logger;
@@ -43,7 +47,7 @@ serviceLocator.register('logger', () => {
  */
 
 serviceLocator.register('mongo', () => {
-  const connectionString = config.mongoDb.url;
+  const connectionString = process.env.NODE_ENV !== 'production' ? process.env.MONGO_DB_URL_TEST : config.mongoDb.url;
   mongoose.Promise = bluebird;
   const mongo = mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true });
   mongo.then(() => {

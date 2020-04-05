@@ -4,12 +4,10 @@ import dotenv from 'dotenv';
 import chai from 'chai';
 import app from '../index';
 import GatewayModel from '../model/gatewayModel';
-import serviceLocate from '../config/di';
 
 const { expect } = chai;
 dotenv.config();
 
-const logger = serviceLocate.get('logger');
 
 before(() => mongoose.connect(process.env.MONGO_DB_URL_TEST, {
   useNewUrlParser: true,

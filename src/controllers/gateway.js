@@ -95,7 +95,7 @@ class GatewayController {
       }
 
       // If gateway device length is greater than 10 return this error with bad request
-      if (findGateway.devices.length > 10) {
+      if (findGateway.devices.length >= 10) {
         return failure(res, {
           message: 'Device has exceeded the required limits'
         }, HTTPStatus.BAD_REQUEST);

@@ -1,10 +1,12 @@
 # gateway-service
+
 Master device that control multiple peripheral devices
 
 # Technologies Used
+
 - Backend: Node/Express
 - MongoDB
-- Libaries: Es6, eslint, mocha, express, chai
+- Libaries: Es6, eslint, mocha, express, chai, babel
 
 # To Install
 
@@ -16,4 +18,5 @@ Master device that control multiple peripheral devices
 - npm run `test` to run the test suits on the app
 
 ## AUTHOR
+
 [Valentine Ezeh](https://github.com/valentineezeh/gateway-service/)
