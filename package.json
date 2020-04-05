@@ -14,10 +14,10 @@
     "test": "cross-env NODE_ENV=test nyc --reporter=html mocha --require babel-core/register src/test/index.js --timeout 10000 --exit && nyc report"
   },
   "dependencies": {
-    "amqplib": "^0.5.5",
+    "amqplib": "0.5.5",
     "axios": "0.19.2",
     "bcryptjs": "2.4.3",
-    "bluebird": "^3.7.2",
+    "bluebird": "3.7.2",
     "body-parser": "1.19.0",
     "core-util-is": "1.0.2",
     "cors": "2.8.5",
@@ -30,17 +30,17 @@
     "faker": "4.1.0",
     "helmet": "3.18.0",
     "is-empty": "1.2.0",
-    "is-ip": "^3.1.0",
-    "jsonwebtoken": "^8.5.1",
+    "is-ip": "3.1.0",
+    "jsonwebtoken": "8.5.1",
     "mongodb": "3.5.2",
     "mongoose": "5.8.11",
-    "mongoose-float": "^1.0.4",
+    "mongoose-float": "1.0.4",
     "morgan": "1.9.1",
     "nodemon": "1.18.11",
-    "npm-run-all": "^4.1.5",
+    "npm-run-all": "4.1.5",
     "rimraf": "2.6.3",
     "winston": "3.2.1",
-    "winston-daily-rotate-file": "^4.4.2"
+    "winston-daily-rotate-file": "4.4.2"
   },
   "devDependencies": {
     "babel-cli": "6.26.0",
